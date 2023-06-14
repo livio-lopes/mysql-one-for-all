@@ -3,7 +3,7 @@ CREATE DATABASE IF NOT EXISTS SpotifyClone;
 
 -- Creating Table Planos
 CREATE TABLE SpotifyClone.planos(
-    id_plano INT UNSIGNED AUTO_INCREMENT,
+    id_plano INT AUTO_INCREMENT,
     plano VARCHAR(20) NOT NULL,
     valor_plano DOUBLE NOT NULL,
     CONSTRAINT PRIMARY KEY (id_plano)
@@ -19,7 +19,7 @@ CREATE TABLE SpotifyClone.planos(
     
 -- Creating table artistas
 CREATE TABLE SpotifyClone.artistas(
-    id_artista INT UNSIGNED AUTO_INCREMENT,
+    id_artista INT AUTO_INCREMENT,
     artista VARCHAR(50),
     CONSTRAINT PRIMARY KEY (id_artista)
 ) engine = InnoDB;
@@ -36,9 +36,9 @@ CREATE TABLE SpotifyClone.artistas(
   
   -- Creating table albums
 CREATE TABLE SpotifyClone.albums(
-    id_album INT UNSIGNED AUTO_INCREMENT,
+    id_album INT AUTO_INCREMENT,
     album VARCHAR(50),	
-	id_artista INT UNSIGNED NOT NULL,
+	id_artista INT NOT NULL,
     ano_lancamento YEAR,
 	FOREIGN KEY (id_artista) REFERENCES SpotifyClone.artistas (id_artista),
     CONSTRAINT PRIMARY KEY (id_album)
@@ -58,10 +58,10 @@ CREATE TABLE SpotifyClone.albums(
 
 -- Creating table usuarios
 CREATE TABLE SpotifyClone.usuarios(
-	id_pessoa_usuaria INT UNSIGNED AUTO_INCREMENT,
+	id_pessoa_usuaria INT AUTO_INCREMENT,
     nome_pessoa_usuaria VARCHAR(50) NOT NULL,
-    idade TINYINT UNSIGNED NOT NULL,
-    id_plano INT UNSIGNED NOT NULL,
+    idade TINYINT NOT NULL,
+    id_plano INT NOT NULL,
     data_assinatura DATE NOT NULL,
     CONSTRAINT PRIMARY KEY (id_pessoa_usuaria),
     FOREIGN KEY (id_plano) REFERENCES planos (id_plano)
@@ -84,10 +84,10 @@ VALUES
     
 -- Creating table cancoes
 CREATE TABLE SpotifyClone.cancoes(
-	id_cancao INT UNSIGNED AUTO_INCREMENT,
-	id_album INT UNSIGNED NOT NULL,
+	id_cancao INT AUTO_INCREMENT,
+	id_album INT NOT NULL,
     cancao VARCHAR(100) NOT NULL,
-    duracao_segundos INT UNSIGNED NOT NULL,
+    duracao_segundos INT NOT NULL,
 	CONSTRAINT PRIMARY KEY (id_cancao),
     FOREIGN KEY (id_album) REFERENCES SpotifyClone.albums (id_album)
 ) engine = InnoDB;
@@ -108,8 +108,8 @@ VALUES
 
 -- Creating table seguidores
 CREATE TABLE SpotifyClone.seguidores(
-	id_artista INT UNSIGNED,
-    id_pessoa_usuaria INT UNSIGNED,
+	id_artista INT NOT NULL,
+    id_pessoa_usuaria INT NOT NULL,
 	CONSTRAINT PRIMARY KEY(id_pessoa_usuaria, id_artista),
 	FOREIGN KEY (id_artista) REFERENCES SpotifyClone.artistas (id_artista),
     FOREIGN KEY (id_pessoa_usuaria) REFERENCES SpotifyClone.usuarios (id_pessoa_usuaria)
@@ -135,13 +135,12 @@ VALUES
 
 -- Creating table reproducoes
 CREATE TABLE SpotifyClone.reproducoes(
-    id_pessoa_usuaria INT UNSIGNED NOT NULL,
-	id_cancao INT UNSIGNED NOT NULL,
-  data_reproducao DATETIME NOT NULL,
-  CONSTRAINT PRIMARY KEY (id_pessoa_usuaria, id_cancao),
-  FOREIGN KEY (id_cancao) REFERENCES SpotifyClone.cancoes (id_cancao),
-  FOREIGN KEY (id_pessoa_usuaria) REFERENCES SpotifyClone.usuarios (id_pessoa_usuaria)
-
+id_pessoa_usuaria INT NOT NULL,
+id_cancao INT NOT NULL,
+data_reproducao DATETIME NOT NULL,
+CONSTRAINT PRIMARY KEY (id_pessoa_usuaria, id_cancao),
+FOREIGN KEY (id_cancao) REFERENCES SpotifyClone.cancoes (id_cancao),
+FOREIGN KEY (id_pessoa_usuaria) REFERENCES SpotifyClone.usuarios (id_pessoa_usuaria)
 ) engine = InnoDB;
 -- Inserting data on reproducoes
 INSERT INTO SpotifyClone.reproducoes(id_pessoa_usuaria, id_cancao, data_reproducao)
