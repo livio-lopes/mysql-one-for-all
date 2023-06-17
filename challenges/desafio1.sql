@@ -99,12 +99,12 @@ VALUES
 (1,"VIRGOR'S GROOVE", 369),
 (1,'ALIEN SUPERSTAR',116),
 (2,"Don't Stop Me Now",203),
-(2,'Under Pressure',152),
-(3, 'Como Nossos Pais',105),
-(3, "O Medo de Amar é o Medo de Ser Livre",207),
-(4, 'Samba em Paris', 267),
-(5, "The Bard's Song", 244),
-(6, 'Feeling Good', 100);
+(3,'Under Pressure',152),
+(4, 'Como Nossos Pais',105),
+(5, "O Medo de Amar é o Medo de Ser Livre",207),
+(6, 'Samba em Paris', 267),
+(7, "The Bard's Song", 244),
+(8, 'Feeling Good', 100);
 
 -- Creating table seguidores
 CREATE TABLE SpotifyClone.seguidores(
